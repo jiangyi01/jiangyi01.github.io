@@ -270,7 +270,7 @@
 
 	<a href="/2021/05/10/unix-order/" itemprop="url">
 		<time datetime="2021-05-10T09:05:38.661Z" itemprop="dateUpdated">
-	  		2021-05-10
+	  		2021-05-11
 	  </time>
 	</a> 
 
@@ -313,48 +313,33 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h1 id="Unix常用命令技巧（可配linux大部分命令）"><a href="#Unix常用命令技巧（可配linux大部分命令）" class="headerlink" title="Unix常用命令技巧（可配linux大部分命令）"></a>Unix常用命令技巧（可配linux大部分命令）</h1><p>pwd：print work directory 打印工作目录</p>
+			<h1 id="Unix-常用命令技巧（可配-linux-大部分命令）"><a href="#Unix-常用命令技巧（可配-linux-大部分命令）" class="headerlink" title="Unix 常用命令技巧（可配 linux 大部分命令）"></a>Unix 常用命令技巧（可配 linux 大部分命令）</h1><h1 id="Unix"><a href="#Unix" class="headerlink" title="Unix"></a>Unix</h1><p>pwd：print work directory 打印工作目录</p>
 <p>ls：查看当前文件夹文件 </p>
-<pre><code>-l：查看文件     
-
--al：查看左右文件（包含以小数点开头的隐藏文件）
-
-ls | more 分页展示当前文件夹中的所有文件
-
-ls python* 这个就是使用正则表达式来搜索
-
-ls | grep &quot;python&quot;将前面查询结果交由后面继续查询
-
-    ｜是管道符号，将前面命令结果交由后面的命令执行
-
-ln：给文件建立链接
-
-    使用方式：ln -s 【源文件】【链接名】注意只能建立文件类型的链接不能建立文件夹类型的链接
-
-        【option】：-s：建立链接    -f：存在覆盖，不存在则覆盖
-</code></pre>
+<p>​    -l：查看文件     -al：查看左右文件（包含以小数点开头的隐藏文件） </p>
+<p>​    ls | more 分页展示当前文件夹中的所有文件</p>
+<p>​    ls python* 这个就是使用正则表达式来搜索</p>
+<p>​    ls | grep “python”将前面查询结果交由后面继续查询</p>
+<p>​        ｜是管道符号，将前面命令结果交由后面的命令执行</p>
+<p>​    ln：给文件建立链接</p>
+<p>​            使用方式：ln -s 【源文件】【链接名】注意只能建立文件类型的链接不能建立文件夹类型的链接</p>
+<p>​            【option】：-s：建立链接</p>
+<p>​                       -f：存在覆盖，不存在则覆盖</p>
 <p>find ：搜索查询文件</p>
-<pre><code>find 查询路径 选项 参数
-
-比如find . -name &quot;python&quot;查询当前目录下所有名字中有关键字python的文件
-
-各种查询方式可以从man中找到
-</code></pre>
+<p>​        find 查询路径 选项 参数</p>
+<p>​            比如find . -name “python”查询当前目录下所有名字中有关键字python的文件</p>
+<p>​            各种查询方式可以从man中找到</p>
 <p>cd：改变文件夹位置</p>
-<pre><code>加~回车 或者 直接回车：直接进入用户当前主目录
-
-加/回车：进入用户根目录
-</code></pre>
+<p>​    加~回车 或者 直接回车：直接进入用户当前主目录</p>
+<p>​    加/回车：进入用户根目录</p>
 <p>who：查看当前系统的用户</p>
-<p>whoami：当前登录用户</p>
+<p>​    whoami：当前登录用户</p>
 <p>man：查看命令帮助手册</p>
 <p>–help：查看命令选项(也就是放在指令后面)</p>
 <p>history：罗列在终端窗口中操作的命令</p>
 <p>touch：在当前文件目录中创建一个空文件</p>
 <p>mkdir：在当前文件目录中创建一个文件夹，mkdir -p 可以用/来进行连续嵌套，比如mkdir -p /微信/user</p>
 <p>tree：列出在本目录下，文件的树形图</p>
-<p>rm：删除一个文件    rmdir：删除一个文件夹    rm -rf连级删除文件夹（文件夹里面        的东西也会删掉）。rm -rf * 删除当前文件夹中的所有文件，执行之前使</p>
-<p>pwd确认一下当前文件夹是哪个，一般在unix删除大量日志信息时，要确定在哪个文件夹。rm -rf /：永远不要执行，这个是删除根目录。</p>
+<p>rm：删除一个文件    rmdir：删除一个文件夹    rm -rf连级删除文件夹（文件夹里面        的东西也会删掉）。rm -rf * 删除当前文件夹中的所有文件，执行之前使pwd确认一下当前文件夹是哪个，一般在unix删除大量日志信息时，要确定在哪个文件夹。rm -rf /：永远不要执行，这个是删除根目录。</p>
 <p>tar：打包解压命令 </p>
 <p>​        -c：打包，将多个文件打包成一个文件，这个文件后缀名：.tar</p>
 <p>​        -x ：解包，将.tar文件拆分成原始的多个文件</p>
@@ -365,9 +350,8 @@ ln：给文件建立链接
 <p>​        tar -tvf：查看包内多个文件</p>
 <p>​        打包文件是为了统一整理文件，方便文件在移动/传输中最大程度的保证文件不损坏</p>
 <p>gzip：压缩命令，压缩文件的名称，后缀名一般是：gz    通常情况下，和tar命令一起使用，tar命令打包文件，gzip压缩文件，得到.tar.tz，默认压缩的话会直接覆盖原文件</p>
-<pre><code>gzip -d：解压缩文件
-</code></pre>
-<p>tar -xzvf 文件.tar.gz：解压缩.tar.gz文件，解压的同时拆包，得到具体文件</p>
+<p>​        gzip -d：解压缩文件</p>
+<p>​    tar -xzvf 文件.tar.gz：解压缩.tar.gz文件，解压的同时拆包，得到具体文件</p>
 <p>bzip2：压缩解压命令，和tar命令一般结合使用，tar用于文件打包，bzip2用于压缩，压缩后的：.tar.bz2为后缀</p>
 <p>zip | unzip :压缩与解压缩 </p>
 <p>​        zip后缀：.zip 使用方法，zip 压缩后的名称 具体压缩文件列表; </p>
