@@ -34,10 +34,10 @@
 
 <script>
     const CONFIG_BGIMAGE = {
-      mode: 'normal',
+      mode: 'random_you',
       normalSrc: '/img/header-bg.jpg',
       randomYouMax: 110,
-      randomYouSrc: 'https://sariay.github.io/Random-img/',
+      randomYouSrc: '/img/random/',
 	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
 	  preloaderEnable: true
     }
@@ -266,7 +266,7 @@
 
 	<a href="/2021/05/08/hello-world/" itemprop="url">
 		<time datetime="2021-05-08T08:52:00.684Z" itemprop="dateUpdated">
-	  		2021-05-09
+	  		2021-05-10
 	  </time>
 	</a> 
 
@@ -329,11 +329,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Live2D动画</span></span><br><span class="line">live2d:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  scriptFrom: <span class="built_in">local</span></span><br><span class="line">  pluginRootPath: live2dw/</span><br><span class="line">  pluginJsPath: lib/</span><br><span class="line">  pluginModelPath: assets/</span><br><span class="line">  tagMode: <span class="literal">false</span></span><br><span class="line">  debug: <span class="literal">false</span></span><br><span class="line">  model:</span><br><span class="line">    use: live2d-widget-model-shizuku</span><br><span class="line">  display:</span><br><span class="line">    position: right </span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>主要参数说明</p>
 <p>enable //是否使用<br>model:<br>use: live2d-widget-model-shizuku //要使用的模型名称<br>display:<br>position: right //显示的位置<br>width: 150 //宽度<br>height: 150 //高度<br>mobile:<br>show: true //移动端是否显示</p>
+<h2 id="下面描述一下博客md文档生成时会出现的错误"><a href="#下面描述一下博客md文档生成时会出现的错误" class="headerlink" title="下面描述一下博客md文档生成时会出现的错误"></a>下面描述一下博客md文档生成时会出现的错误</h2><p>1.首先是图片问题，可能出现图片上传然后渲染不出来的情况<br>  下面是解决方法<br>  第一步（简单配置）：<br>  （1）把主页配置文件_config.yml 里的post_asset_folder:这个选项设置为true<br>  （2）在你的hexo目录下执行这样一句话npm install hexo-asset-image –save，这是下载安装一个可以上传本地图片的插件<br>  （3）等待一小段时间后，再运行hexo n “xxxx”来生成md博文时，/source/_posts文件夹内除了xxxx.md文件还有一个同名的文件夹<br>  第二步（如何使用）：<br>  （4）最后在xxxx.md中想引入图片时，先把图片复制到xxxx这个文件夹中，然后只需要在xxxx.md中按照markdown的格式引入图片：!【你想输入的替代文字】(xxxx/图片名.jpg)<br>  注意： xxxx是这个md文件的名字，也是同名文件夹的名字。只需要有文件夹名字即可，不需要有什么绝对路径。你想引入的图片就只需要放入xxxx这个文件夹内就好了，很像引用相对路径<br>  （5）最后检查一下，hexo g生成页面后，进入public\2017\02\26\index.html文件中查看相关字段，可以发现，html标签内的语句是<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;2017/02/26/xxxx/图片名.jpg&quot;&gt;</span><br></pre></td></tr></table></figure><br>  而不是<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;xxxx/图片名.jpg&quot;&gt;</span><br></pre></td></tr></table></figure><br>  这很重要，关乎你的网页是否可以真正加载你想插入的图片。</p>
+<p>  经过一段时间的努力，上面的操作没有奏效qwq<br>  于是开始想用另外一种方法，将图片存放在云上以http网址访问，这种还没开始弄，以后弄好后会更新<br>  另外一种比较朴素的方法是将所要使用的图片保存到source目录下，新建一个images文件夹，然后在这里面存放，经过编译以后，这个文件会直接放在根目录上面，以后调用的时候直接用 /images/xxx.jpg 的路径就可以了</p>
 <p>【完结撒花】</p>
 	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/../1.jpg"></div>
+		<div id="current-post-cover" data-scr="/images/1.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -347,6 +349,10 @@
 					
 	<span>
 		<a id="totop-post-page">To Top</a>
+		
+			<a href="/2021/05/10/unix-order/" title="unix-order" rel="prev">
+				&laquo;Pre post
+			</a>
 		
 			
 	</span>
@@ -362,9 +368,37 @@
 
 <div class="relate-post">
 	
-		<div class="config-info">
-			Please check the parameter of <b>post_relate</b> in config.yml of hexo-theme-Annie! You should make sure that <b>postsEnable is true</b> and the number of site posts greater than 1.
-		</div>	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/10/unix-order/" title="unix-order">
+								unix-order			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 10日, 2021				
+							</p>
+							<p class="relate-post-content">
+								Unix常用命令技巧（可配linux大部分命令）pwd：print work directory 打印工作目录
+ls：查看当前文件夹文件 
+-l：查看文件     
+
+-al：查看左右文件（包含以小数点开头的隐藏文件）
+
+ls | m...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/10/unix-order/" title="unix-order">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="unix-order"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
 	
 </div>	
 				</div>
