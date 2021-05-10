@@ -270,7 +270,7 @@
 
 	<a href="/2021/05/08/hello-world/" itemprop="url">
 		<time datetime="2021-05-08T08:52:00.684Z" itemprop="dateUpdated">
-	  		2021-05-10
+	  		2021-05-11
 	  </time>
 	</a> 
 
@@ -345,6 +345,10 @@
 <p>创建相册页：hexo new page gallery</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: gallery</span><br><span class="line">date: 2019-03-30 19:25:34</span><br><span class="line">+ layout: gallery</span><br><span class="line">+ <span class="built_in">type</span>: gallery</span><br></pre></td></tr></table></figure>
 <p>打开文件data.json（Annie/source/plugin/gallerypage/data.json）, 按照json语法在数组[……]中添加gallery的图片数据，请设置合适的eWidth、eHeight的值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">&#123;&#125;, </span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">&quot;thumbnail&quot;</span>: <span class="string">&quot;https://img.jpg&quot;</span>,    	 		//小图路径</span><br><span class="line">        <span class="string">&quot;enlarged&quot;</span>: <span class="string">&quot;https://img.jpg&quot;</span>,			 	//大图路径（可与小图一致）</span><br><span class="line">        <span class="string">&quot;title&quot;</span>: <span class="string">&quot;百里守约&quot;</span>,						//图片标题</span><br><span class="line">        <span class="string">&quot;categories&quot;</span>: [&#123;</span><br><span class="line">                <span class="string">&quot;id&quot;</span>: 9,							//根据id来进行分类</span><br><span class="line">                <span class="string">&quot;title&quot;</span>: <span class="string">&quot;百里玄策&quot;</span>,</span><br><span class="line">                <span class="string">&quot;photo_count&quot;</span>: 41787,				 //可忽略</span><br><span class="line">                <span class="string">&quot;links&quot;</span>: &#123;							//可忽略</span><br><span class="line">                    <span class="string">&quot;self&quot;</span>: <span class="string">&quot;https://img.jpg&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;photos&quot;</span>: <span class="string">&quot;https://img.jpg&quot;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;tWidth&quot;</span>: 800.6130030959752,				//小图相对宽度</span><br><span class="line">        <span class="string">&quot;tHeight&quot;</span>: 500,							   //小图相对高度</span><br><span class="line">        <span class="string">&quot;eWidth&quot;</span>: 3630,							   //大图相对宽度</span><br><span class="line">        <span class="string">&quot;eHeight&quot;</span>: 2907							   //大图相对高度</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;&#125;</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+<p>当然，你可以将该文件data.json移至其他目录，相应地修改路径gallery_data</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gallery page</span></span><br><span class="line"><span class="comment"># gallery_format: natural | square</span></span><br><span class="line">gallery_format: natural</span><br><span class="line"><span class="comment"># one time to load 4 rows or other count, 0 to load img automatically when scrolling.(0,1,2,3,4,5,6......)</span></span><br><span class="line">gallery_limit: 0</span><br><span class="line"><span class="comment"># data url</span></span><br><span class="line">+ gallery_data: plugin/gallerypage/data.json</span><br></pre></td></tr></table></figure>
+
 <p>创建站内搜索：npm install hexo-generator-search-zip –save<br>编辑站点目录下的_config.yml，添加如下语句</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.json</span><br><span class="line">  zipPath: search.zip</span><br><span class="line">  versionPath: searchVersion.txt</span><br><span class="line">  field: post</span><br><span class="line">  <span class="comment">#field: post, page or all（3个可选参数）</span></span><br></pre></td></tr></table></figure>
 <p>编辑主题目录下的_config.yml，添加如下语句</p>
@@ -392,6 +396,53 @@
 <div class="relate-post">
 	
 		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/11/ai-study/" title="ai-study">
+								ai-study			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								关于ai学习的一些历程
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/11/ai-study/" title="ai-study">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/4.jpeg" alt="ai-study"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/11/ai-env/" title="ai-environment">
+								ai-environment			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								这个文档主要与pytorch等机器学习等python或者其他库等配置方法，和在服务器中的使用方法
+用nvidia-smi来查看显卡的信息
+接着用yum来安装python
+安装annocoda环境，先下载包，然后bash即可，会自动帮你...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/11/ai-env/" title="ai-environment">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/3.jpeg" alt="ai-environment"/>
+							</a>
+						</div>
+					</li>												
 			
 					<li>
 						<div class="relate-post-text">
