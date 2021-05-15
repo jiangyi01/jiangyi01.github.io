@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      ai-study | the log of study from jy
+      nlp | the log of study from jy
     
   </title>
   <meta name="author" content="Jiang Yi">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「ai-study」
+			「nlp」
 		
 	</p>
 
@@ -251,8 +251,8 @@
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/05/11/ai-study/" itemprop="url">
-		ai-study
+	<a href="/2021/05/15/nlp/" itemprop="url">
+		nlp
 	</a>
 
 		</div>
@@ -268,9 +268,9 @@
 
 	Updated on
 
-	<a href="/2021/05/11/ai-study/" itemprop="url">
-		<time datetime="2021-05-10T16:33:46.511Z" itemprop="dateUpdated">
-	  		2021-05-11
+	<a href="/2021/05/15/nlp/" itemprop="url">
+		<time datetime="2021-05-15T12:04:11.713Z" itemprop="dateUpdated">
+	  		2021-05-15
 	  </time>
 	</a> 
 
@@ -281,8 +281,8 @@
 				
 	<i class="icon-price-tags"></i>
 	
-		<a href="/tags/ai/" class=" ">
-			ai
+		<a href="/tags/nginx/" class=" ">
+			nginx
 		</a>
 	
 		
@@ -291,7 +291,7 @@
 			
 
 	
-    <span class="leancloud_visitors" id="/2021/05/11/ai-study/_visitors" data-url="/2021/05/11/ai-study/" data-title="ai-study">
+    <span class="leancloud_visitors" id="/2021/05/15/nlp/_visitors" data-url="/2021/05/15/nlp/" data-title="nlp">
        	<i class="icon-eye"></i>
        	Hits
         
@@ -303,7 +303,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2021/05/11/ai-study/_likes" data-url="/2021/05/11/ai-study/" data-title="ai-study" rel="unlike">
+    <span class="leancloud_likes" id="/2021/05/15/nlp/_likes" data-url="/2021/05/15/nlp/" data-title="nlp" rel="unlike">
         <i class="icon-heart"></i>
         Likes
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -313,10 +313,20 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h2 id="关于ai学习的一些历程"><a href="#关于ai学习的一些历程" class="headerlink" title="关于ai学习的一些历程"></a>关于ai学习的一些历程</h2>	
+			<h1 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h1><p>有关pytorch的学习网站：<a target="_blank" rel="noopener" href="https://pytorch-cn.readthedocs.io/zh/latest/">https://pytorch-cn.readthedocs.io/zh/latest/</a><br>另外一些有关pytorch的知识点如下</p>
+<h2 id="PyTorch中的Tensor张量"><a href="#PyTorch中的Tensor张量" class="headerlink" title="PyTorch中的Tensor张量"></a>PyTorch中的Tensor张量</h2><h1 id="1-Tensor张量"><a href="#1-Tensor张量" class="headerlink" title="1.Tensor张量"></a>1.Tensor张量</h1><p>我们可以将这个理解为矩阵</p>
+<h1 id="2-Tensor数据类型"><a href="#2-Tensor数据类型" class="headerlink" title="2.Tensor数据类型"></a>2.Tensor数据类型</h1><p>（1）torch.FloatTensor()参数可以直接是一个元组然后转化为Tensor；或者是两个参数，n，m直接代表矩阵的维度已经形状。<br>（2）torch.IntTensor，用于生成数据类型为整形的tensor。</p>
+<h1 id="3-Tensor常用函数"><a href="#3-Tensor常用函数" class="headerlink" title="3.Tensor常用函数"></a>3.Tensor常用函数</h1><p>（1）torch.rand    # 用于生成数据类型为浮点型且维度指定的随机Tensor，和在Numpy中使用numpy.rand生成随机数的方法类似，随机生成的浮点数据在0~1区间均匀分布。</p>
+<p>（2）torch.randn    # 用于生成数据类型为浮点型且维度指定的随机Tensor，和在Numpy中使用numpy.randn生成随机数的方法类似，随机生成的浮点数的取值满足均值为0，方差为1的正太分布。</p>
+<p>（3）torch.range    # 用于生成数据类型为浮点型且自定义其实范围和结束范围的Tensor，所以传递给torch.range的参数有三个，分别是范围的起始值，范围的结束值和步长，其中，步长用于指定从起始值到结束值的每步的数据间隔。</p>
+<p>（4）torch.zeros    # 用于生成数据类型为浮点型且维度指定的Tensor，不过这个浮点型的Tensor中的元素值全部为0。</p>
+<p>（5）torch.abs    # 将参数传递到torch.abs后返回输入参数的绝对值作为输出，输出参数必须是一个Tensor数据类型的变量。</p>
+<p>（6）torch.add    # 将参数传递到torch.add后返回输入参数的求和结果作为输出，输入参数既可以全部是Tensor数据类型的变量，也可以是一个Tensor数据类型的变量，另一个是标量。</p>
+<p>（7）torch.clamp    # 对输入参数按照自定义的范围进行裁剪，最后将参数裁剪的结果作为输出。所以输入参数一共有三个，分别是需要进行裁剪的Tensor数据类型的变量、裁剪的上边界和裁剪的下边界，具体的裁剪过程是：使用变量中的每个元素分别和裁剪的上边界及裁剪的下边界的值进行比较，如果元素的值小于裁剪的下边界的值，该元素就被重写成裁剪的下边界的值；同理，如果元素的值大于裁剪的上边界的值，该元素就被重写成裁剪的上边界的值。</p>
+	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/images/4.jpeg"></div>
+		<div id="current-post-cover" data-scr="/images/2.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -331,12 +341,8 @@
 	<span>
 		<a id="totop-post-page">To Top</a>
 		
-			<a href="/2021/05/11/nginx-use/" title="nginx-use" rel="prev">
-				&laquo;Pre post
-			</a>
 		
-		
-			<a href="/2021/05/11/ai-env/" title="ai-environment" rel="next">
+			<a href="/2021/05/15/tomcat/" title="tomcat" rel="next">
 				Next post&raquo;
 			</a>
 			
@@ -354,54 +360,6 @@
 <div class="relate-post">
 	
 		<ul>
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/05/11/ai-env/" title="ai-environment">
-								ai-environment			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 11日, 2021				
-							</p>
-							<p class="relate-post-content">
-								这个文档主要与pytorch等机器学习等python或者其他库等配置方法，和在服务器中的使用方法
-用nvidia-smi来查看显卡的信息
-接着用yum来安装python
-安装annocoda环境，先下载包，然后bash即可，会自动帮你...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/05/11/ai-env/" title="ai-environment">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/3.jpeg" alt="ai-environment"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/05/15/nlp/" title="nlp">
-								nlp			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 15日, 2021				
-							</p>
-							<p class="relate-post-content">
-								pytorch有关pytorch的学习网站：https://pytorch-cn.readthedocs.io/zh/latest/另外一些有关pytorch的知识点如下
-PyTorch中的Tensor张量1.Tensor张量我们可以...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/05/15/nlp/" title="nlp">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="nlp"/>
-							</a>
-						</div>
-					</li>												
 			
 					<li>
 						<div class="relate-post-text">
@@ -450,6 +408,76 @@ PyTorch中的Tensor张量1.Tensor张量我们可以...
 			
 					<li>
 						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/08/hello-world/" title="hello hexo">
+								hello hexo			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 8日, 2021				
+							</p>
+							<p class="relate-post-content">
+								本篇文章介绍了如何使用hexo博客以及配置相关的内容（包括统计插件，评论插件等）：
+安装并发布hexo安装hexo：npm install -g hexo-cli检查是否安装成功：hexo -v初始化网址：hexo init接着输入 ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/08/hello-world/" title="hello hexo">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="hello hexo"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/11/ai-study/" title="ai-study">
+								ai-study			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								关于ai学习的一些历程
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/11/ai-study/" title="ai-study">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/4.jpeg" alt="ai-study"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/11/ai-env/" title="ai-environment">
+								ai-environment			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 11日, 2021				
+							</p>
+							<p class="relate-post-content">
+								这个文档主要与pytorch等机器学习等python或者其他库等配置方法，和在服务器中的使用方法
+用nvidia-smi来查看显卡的信息
+接着用yum来安装python
+安装annocoda环境，先下载包，然后bash即可，会自动帮你...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/11/ai-env/" title="ai-environment">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/3.jpeg" alt="ai-environment"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2021/05/10/unix-order/" title="unix-order">
 								unix-order			
 							</a>
@@ -468,29 +496,6 @@ ls：查看当前文件夹文件
 							<a href="/2021/05/10/unix-order/" title="unix-order">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/images/6.jpg" alt="unix-order"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/05/08/hello-world/" title="hello hexo">
-								hello hexo			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 8日, 2021				
-							</p>
-							<p class="relate-post-content">
-								本篇文章介绍了如何使用hexo博客以及配置相关的内容（包括统计插件，评论插件等）：
-安装并发布hexo安装hexo：npm install -g hexo-cli检查是否安装成功：hexo -v初始化网址：hexo init接着输入 ...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/05/08/hello-world/" title="hello hexo">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="hello hexo"/>
 							</a>
 						</div>
 					</li>												
