@@ -270,7 +270,7 @@
 
 	<a href="/2021/05/15/nlp/" itemprop="url">
 		<time datetime="2021-05-15T12:04:11.713Z" itemprop="dateUpdated">
-	  		2021-05-17
+	  		2021-05-18
 	  </time>
 	</a> 
 
@@ -336,7 +336,41 @@
 <p>autograd.Variable 是这个package的中心类。它打包了一个Tensor，并且支持几乎所有运算。一旦你完成了你的计算，可以调用.backward()，所有梯度就可以自动计算。</p>
 <h3 id="3-使用自动梯度和自定义函数搭建简易神经网络模型"><a href="#3-使用自动梯度和自定义函数搭建简易神经网络模型" class="headerlink" title="3.使用自动梯度和自定义函数搭建简易神经网络模型"></a>3.使用自动梯度和自定义函数搭建简易神经网络模型</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch.autograd import Variable</span><br><span class="line"> </span><br><span class="line"><span class="comment">#构建神经网络模型</span></span><br><span class="line">class Model(torch.nn.Module):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        super(Model,self).__init__()</span><br><span class="line">        <span class="comment">#super().__init__()</span></span><br><span class="line">    def forward(self,input,w1,w2):</span><br><span class="line">        x=torch.mm(input,w1)</span><br><span class="line">        x=torch.clamp(x,min=0)</span><br><span class="line">        x=torch.mm(x,w2)</span><br><span class="line">        <span class="built_in">return</span> x</span><br><span class="line">    def backward(self):</span><br><span class="line">        pass</span><br><span class="line"> </span><br><span class="line">batch_n = 100 <span class="comment"># 批量输入的数据量</span></span><br><span class="line">hidden_layer = 100 <span class="comment"># 通过隐藏层后输出的特征数</span></span><br><span class="line">input_data = 1000 <span class="comment"># 输入数据的特征个数</span></span><br><span class="line">output_data = 10 <span class="comment"># 最后输出的分类结果数</span></span><br><span class="line"><span class="comment">#初始化权重</span></span><br><span class="line">x = Variable(torch.randn(batch_n, input_data), requires_grad=False)</span><br><span class="line">y = Variable(torch.randn(batch_n, output_data), requires_grad=False)</span><br><span class="line">w1 = Variable(torch.randn(input_data, hidden_layer), requires_grad=True)</span><br><span class="line">w2 = Variable(torch.randn(hidden_layer, output_data), requires_grad=True)</span><br><span class="line">epoch_n = 20  <span class="comment">#训练的次数</span></span><br><span class="line">learning_rate = 1e-6 <span class="comment">#学习效率</span></span><br><span class="line">model=Model() <span class="comment">#对模型类进行调用</span></span><br><span class="line"><span class="comment">#模型训练和参数优化</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(epoch_n):</span><br><span class="line">    y_pred = model(x,w1,w2) <span class="comment">#完成对模型预测值的输出</span></span><br><span class="line">    loss = (y_pred - y).pow(2).sum()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Epoch:&#123;&#125; , Loss:&#123;:.4f&#125;&quot;</span>.format(epoch, loss.data))</span><br><span class="line">    loss.backward()  <span class="comment">#自动计算所有梯度</span></span><br><span class="line">    w1.data -= learning_rate * w1.grad.data</span><br><span class="line">    w2.data -= learning_rate * w2.grad.data</span><br><span class="line">    w1.grad.data.zero_()</span><br><span class="line">    w2.grad.data.zero_()</span><br></pre></td></tr></table></figure>
 
-<h1 id="词向量学习"><a href="#词向量学习" class="headerlink" title="词向量学习"></a>词向量学习</h1><h2 id="One-hot编码"><a href="#One-hot编码" class="headerlink" title="One hot编码"></a>One hot编码</h2><h3 id="什么是One-hot编码"><a href="#什么是One-hot编码" class="headerlink" title="什么是One hot编码"></a>什么是One hot编码</h3><p>one-hot编码，又称独热编码、一位有效编码。其方法是使用N位状态寄 存器来对N个状态进行编码，每个状态都有它独立的寄存器位，并且在 任意时候，其中只有一位有效。举个例子，假设我们有四个样本(行)， 每个样本有三个特征(列)，如下图:<br>|         | Feature_1 | Feature_2 | Feature_3 |<br>| ——- | ——— | ——— | ——— |<br>| Sample1 | 1         | 4         | 3         |<br>| Sample2 | 2         | 3         | 2         |<br>| Sample3 | 1         | 2         | 2         |<br>| Sample4 | 2         | 1         | 1         |</p>
+<h1 id="词向量学习"><a href="#词向量学习" class="headerlink" title="词向量学习"></a>词向量学习</h1><h2 id="One-hot编码"><a href="#One-hot编码" class="headerlink" title="One hot编码"></a>One hot编码</h2><h3 id="什么是One-hot编码"><a href="#什么是One-hot编码" class="headerlink" title="什么是One hot编码"></a>什么是One hot编码</h3><p>one-hot编码，又称独热编码、一位有效编码。其方法是使用N位状态寄 存器来对N个状态进行编码，每个状态都有它独立的寄存器位，并且在 任意时候，其中只有一位有效。举个例子，假设我们有四个样本(行)， 每个样本有三个特征(列)，如下图:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Feature_1</th>
+<th>Feature_2</th>
+<th>Feature_3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sample1</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Sample2</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sample3</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sample4</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
 <p>上图中我们已经对每个特征进行了普通的数字编码:我们的feature_1有两种可能的取值，比如是男/ 女，这里男用1表示，女用2表示。</p>
 <p>那么one-hot编码是怎么搞的呢?我们再拿feature_2来说明:这里 feature_2 有4种取值(状态)，我们就用4个状态位来表示这个特 征，one-hot编码就是保证每个样本中的单个特征只有1位处于状态 1，其他的都是0。</p>
 <p>​    1-&gt;0001</p>
