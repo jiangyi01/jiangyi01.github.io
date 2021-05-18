@@ -422,7 +422,7 @@
 <p><img src="/images/skip-gram-1.PNG" alt="skip-gram-1"></p>
 <p><img src="/images/skip-gram-2.PNG" alt="skip-gram-2"></p>
 <p>注解：看到这里，就引出了word2vec的核心方法，其实就是认为每个词相互独立，用连乘来估计最大似然函数，求解目标函数就是最大化似然函数。上面公式涉及到一个中心词向量v，以及北京词向量u，因此呢很有趣的是，可以用一个input-hidden-output的三层神经网络来建模上面的skip-model。</p>
-<p>Skip-gram可以表示为由输入层（Input）、映射层（Projection）和输出层（Output）组成的神经网络（示意图如下）：<br><img src="/images/skip-gram-3.PNG" alt="skip-gram-3"></p>
+<p>Skip-gram可以表示为由输入层（Input）、映射层（Projection）和输出层（Output）组成的神经网络（示意图如下）：<br><img src="/images/skip-gram-3.jpg" alt="skip-gram-3"></p>
 <p>1.输入的表示：输入层中每个词由独热编码方式表示，即所有词均表示成一个N维向量，其中N为词汇表中单词的总数。在向量中，每个词都将与之对应的维度置为1,其余维度的值均为0。<br>2.网络中传播的前向过程：输出层向量的值可以通过隐含层向量（K维），以及连接隐藏层和输出层之间的KxN维权重矩阵计算得到。输出层也是一个N维向量，每维与词汇表中的一个单词相对应。最后对输出层向量应用Softmax激活函数，可以计算每一个单词的生成概率。<br>训练：<br><img src="/images/skip-gram-4.PNG" alt="skip-gram-4"></p>
 <p>注解：上面的公式每一步都推荐推到一下，都很基础。上面只求了对中心词向量v的梯度，同理对背景词向量的梯度，也很容易计算出来。然后就采用传统的梯度下降（一般采用sgd）来训练词向量（其实我们最后关心的是中心词向量来作为词的表征。）</p>
 <p>这里有一个key point说下，也许大家也想到了：词向量到底在哪里呢？回看下前面图1，有两层神经网络，第一层是input层到hidden层，这个中间的weight矩阵就是词向量！！！</p>
