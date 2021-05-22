@@ -270,7 +270,7 @@
 
 	<a href="/2021/05/15/nlp/" itemprop="url">
 		<time datetime="2021-05-15T12:04:11.713Z" itemprop="dateUpdated">
-	  		2021-05-18
+	  		2021-05-22
 	  </time>
 	</a> 
 
@@ -281,8 +281,8 @@
 				
 	<i class="icon-price-tags"></i>
 	
-		<a href="/tags/nginx/" class=" ">
-			nginx
+		<a href="/tags/ai/" class=" ">
+			ai
 		</a>
 	
 		
@@ -441,7 +441,7 @@
 <p><img src="/images/CBOW-2.PNG" alt="CBOW-2"><br>我们发现，不论是跳字模型（skip-gram） 还是连续词袋模型（CBOW），我们实际上都是取得input-hidden这个词向量（weight矩阵），而不是后面带着loss那一部分，这样我们也很容易可以对loss（训练方法）进行修改，这个也是下一篇要说的内容：</p>
 <p>问：每次梯度的计算复杂度是多少？当词典很大时，会有什么问题？</p>
 <p>word2vec作者很创造性地提出了2种近似训练方法（分层softmax（hierarchical softmax）和负采样（negative sampling）），得益于此，可以训练大规模语料库。</p>
-<h3 id="近似训练"><a href="#近似训练" class="headerlink" title="近似训练"></a>近似训练</h3><h4 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h4><p><img src="/images/negative-sampling-1.png" alt="negative-sampling-1"></p>
+<h2 id="wordvrc优化方式"><a href="#wordvrc优化方式" class="headerlink" title="wordvrc优化方式"></a>wordvrc优化方式</h2><h3 id="近似训练"><a href="#近似训练" class="headerlink" title="近似训练"></a>近似训练</h3><h4 id="负采样"><a href="#负采样" class="headerlink" title="负采样"></a>负采样</h4><p><img src="/images/negative-sampling-1.png" alt="negative-sampling-1"></p>
 <p><img src="/images/negative-sampling-2.png" alt="negative-sampling-2"></p>
 <p><img src="/images/negative-sampling-3.png" alt="negative-sampling-3"></p>
 <h4 id="层序softmax"><a href="#层序softmax" class="headerlink" title="层序softmax"></a>层序softmax</h4><p>一、h-softmax</p>
@@ -463,7 +463,100 @@
 <p><img src="/images/h-softmax-1.png" alt="h-softmax-1"></p>
 <p>how fast</p>
 <p><img src="/images/h-softmax-2.png" alt="h-softmax-2"></p>
-<h2 id="word2vec实现方式"><a href="#word2vec实现方式" class="headerlink" title="word2vec实现方式"></a>word2vec实现方式</h2><h2 id="wordvrc优化方式"><a href="#wordvrc优化方式" class="headerlink" title="wordvrc优化方式"></a>wordvrc优化方式</h2><h2 id="word2vec实战"><a href="#word2vec实战" class="headerlink" title="word2vec实战"></a>word2vec实战</h2><h2 id="fasttext"><a href="#fasttext" class="headerlink" title="fasttext"></a>fasttext</h2><h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2>	
+<h2 id="word2vec实现方式"><a href="#word2vec实现方式" class="headerlink" title="word2vec实现方式"></a>word2vec实现方式</h2><h2 id="word2vec实战"><a href="#word2vec实战" class="headerlink" title="word2vec实战"></a>word2vec实战</h2><h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><p>共现概率：<br>什么是共现？<br>  单词 i i i出现在单词 j j j的环境中(论文给的环境是以 j j j为中心的左右10个单词区间)叫共现。</p>
+<p>什么是共现矩阵？<br>  单词对共现次数的统计表。我们可以通过大量的语料文本来构建一个共现统计矩阵。<br>  例如，有语料如下：<br>  I like deep learning<br>  I like NLP<br>  I enjoy flying<br>  我以窗半径为1来指定上下文环境，则共现矩阵就应该是</p>
+<table>
+<thead>
+<tr>
+<th>count</th>
+<th>I</th>
+<th>like</th>
+<th>enjoy</th>
+<th>deep</th>
+<th>learning</th>
+<th>NLP</th>
+<th>flying</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>I</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>like</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>enjoy</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>deep</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>learning</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>NLP</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>flying</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>因为我们的窗口半径为1，所以对于上面我们的每一句语句来说，进行分析然后统计来看，最后出来的表上诉</p>
+<p><img src="/images/glove-1.png" alt="glove-1"></p>
+<p><img src="/images/glove-2.png" alt="glove-2"></p>
+<p><img src="/images/glove-3.png" alt="glove-3"></p>
+<p><img src="/images/glove-4.png" alt="glove-4"></p>
+<p><img src="/images/glove-5.png" alt="glove-5"></p>
+<p><img src="/images/glove-6.png" alt="glove-6"></p>
+<h2 id="fasttext"><a href="#fasttext" class="headerlink" title="fasttext"></a>fasttext</h2>	
 		</div>
 		
 		<div id="current-post-cover" data-scr="/images/2.jpg"></div>
