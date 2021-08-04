@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      tomcat | the log of study from jy
+      m1-macbook-use | the log of study from jy
     
   </title>
   <meta name="author" content="Jiang Yi">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「tomcat」
+			「m1-macbook-use」
 		
 	</p>
 
@@ -232,14 +232,27 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="Catalog"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
 	 
 
 <div class="layout-post">
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/05/15/tomcat/" itemprop="url">
-		tomcat
+	<a href="/2021/08/05/m1-macbook-use/" itemprop="url">
+		m1-macbook-use
 	</a>
 
 		</div>
@@ -255,9 +268,9 @@
 
 	Updated on
 
-	<a href="/2021/05/15/tomcat/" itemprop="url">
-		<time datetime="2021-05-15T07:59:57.849Z" itemprop="dateUpdated">
-	  		2021-05-15
+	<a href="/2021/08/05/m1-macbook-use/" itemprop="url">
+		<time datetime="2021-08-04T17:01:57.950Z" itemprop="dateUpdated">
+	  		2021-08-05
 	  </time>
 	</a> 
 
@@ -268,8 +281,8 @@
 				
 	<i class="icon-price-tags"></i>
 	
-		<a href="/tags/tomcat/" class=" ">
-			tomcat
+		<a href="/tags/m1-macbook/" class=" ">
+			m1-macbook
 		</a>
 	
 		
@@ -278,7 +291,7 @@
 			
 
 	
-    <span class="leancloud_visitors" id="/2021/05/15/tomcat/_visitors" data-url="/2021/05/15/tomcat/" data-title="tomcat">
+    <span class="leancloud_visitors" id="/2021/08/05/m1-macbook-use/_visitors" data-url="/2021/08/05/m1-macbook-use/" data-title="m1-macbook-use">
        	<i class="icon-eye"></i>
        	Hits
         
@@ -290,7 +303,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2021/05/15/tomcat/_likes" data-url="/2021/05/15/tomcat/" data-title="tomcat" rel="unlike">
+    <span class="leancloud_likes" id="/2021/08/05/m1-macbook-use/_likes" data-url="/2021/08/05/m1-macbook-use/" data-title="m1-macbook-use" rel="unlike">
         <i class="icon-heart"></i>
         Likes
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -300,10 +313,22 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-				
+			<h2 id="JDK-配置"><a href="#JDK-配置" class="headerlink" title="JDK 配置"></a>JDK 配置</h2><p>目前 Zulu JDK 支持 M1芯片，下载：<a target="_blank" rel="noopener" href="https://www.azul.com/downloads/?package=jdk#download-openjdk">下载地址</a><br>下载后点击安装，在控制台输入java -version</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line">openjdk version <span class="string">&quot;16.0.2&quot;</span> 2021-07-20</span><br><span class="line">OpenJDK Runtime Environment Zulu16.32+15-CA (build 16.0.2+7)</span><br><span class="line">OpenJDK 64-Bit Server VM Zulu16.32+15-CA (build 16.0.2+7, mixed mode)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="多版本-JDK"><a href="#多版本-JDK" class="headerlink" title="多版本 JDK"></a>多版本 JDK</h2><p>下载不同版本安装即可，Zulu JDK默认安装在/Library/Java/JavaVirtualMachines目录下，配置 JAVA_HOME切换 JDK版本, 修改~/.zshrc文件,(Mac M1 2020 版默认使用的是zsh)没有创建一个, 将配置加入到文件末尾</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<h2 id="MAVEN-配置"><a href="#MAVEN-配置" class="headerlink" title="MAVEN 配置"></a>MAVEN 配置</h2><p>下载maven, 解压后移动到 /opt目录下（不移动到/opt下也行），配置MAVEN_HOME, 修改~/.zshrc文件， 将配置加入到文件末尾<br><a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">下载地址</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> MAVEN_HOME=/opt/apache-maven-3.6.3</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$MAVEN_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+
+<p>控制台输入mvn -version</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)</span><br><span class="line">Maven home: /opt/apache-maven-3.6.3</span><br><span class="line">Java version: 11.0.10, vendor: Azul Systems, Inc., runtime: /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home</span><br><span class="line">Default locale: zh_CN_<span class="comment">#Hans, platform encoding: UTF-8</span></span><br><span class="line">OS name: <span class="string">&quot;mac os x&quot;</span>, version: <span class="string">&quot;11.2&quot;</span>, arch: <span class="string">&quot;aarch64&quot;</span>, family: <span class="string">&quot;Mac&quot;</span></span><br></pre></td></tr></table></figure>
+	
 		</div>
 		
-		<div id="current-post-cover" data-scr="/images/5.jpg"></div>
+		<div id="current-post-cover" data-scr="/images/1.jpg"></div>
 
 		<!-- relate post, comment...-->
 		<div class="investment-container">
@@ -318,12 +343,8 @@
 	<span>
 		<a id="totop-post-page">To Top</a>
 		
-			<a href="/2021/05/15/nlp/" title="nlp" rel="prev">
-				&laquo;Pre post
-			</a>
 		
-		
-			<a href="/2021/05/11/nginx-use/" title="nginx-use" rel="next">
+			<a href="/2021/07/22/nginx-using-method/" title="nginx-use" rel="next">
 				Next post&raquo;
 			</a>
 			
@@ -362,75 +383,6 @@
 							<a href="/2021/07/22/nginx-using-method/" title="nginx-use">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="nginx-use"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/05/15/nlp/" title="nlp">
-								nlp			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 15日, 2021				
-							</p>
-							<p class="relate-post-content">
-								pytorch有关pytorch的学习网站：https://pytorch-cn.readthedocs.io/zh/latest/另外一些有关pytorch的知识点如下
-PyTorch中的Tensor张量1.Tensor张量我们可以...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/05/15/nlp/" title="nlp">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="nlp"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/05/08/hello-world/" title="hello hexo">
-								hello hexo			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 8日, 2021				
-							</p>
-							<p class="relate-post-content">
-								本篇文章介绍了如何使用hexo博客以及配置相关的内容（包括统计插件，评论插件等）：
-安装并发布hexo安装hexo：npm install -g hexo-cli检查是否安装成功：hexo -v初始化网址：hexo init接着输入 ...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/05/08/hello-world/" title="hello hexo">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="hello hexo"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">
-								m1-macbook-use			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								八月 5日, 2021				
-							</p>
-							<p class="relate-post-content">
-								JDK 配置目前 Zulu JDK 支持 M1芯片，下载：下载地址下载后点击安装，在控制台输入java -version
-1234java -versionopenjdk version &quot;16.0.2&quot; 2021...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="m1-macbook-use"/>
 							</a>
 						</div>
 					</li>												
@@ -476,6 +428,51 @@ PyTorch中的Tensor张量1.Tensor张量我们可以...
 							<a href="/2021/07/16/git-use/" title="git-use">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/images/7.jpg" alt="git-use"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/15/nlp/" title="nlp">
+								nlp			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 15日, 2021				
+							</p>
+							<p class="relate-post-content">
+								pytorch有关pytorch的学习网站：https://pytorch-cn.readthedocs.io/zh/latest/另外一些有关pytorch的知识点如下
+PyTorch中的Tensor张量1.Tensor张量我们可以...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/15/nlp/" title="nlp">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="nlp"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/15/tomcat/" title="tomcat">
+								tomcat			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 15日, 2021				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/15/tomcat/" title="tomcat">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/5.jpg" alt="tomcat"/>
 							</a>
 						</div>
 					</li>												
@@ -547,6 +544,29 @@ ls：查看当前文件夹文件
 							<a href="/2021/05/10/unix-order/" title="unix-order">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/images/6.jpg" alt="unix-order"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/05/08/hello-world/" title="hello hexo">
+								hello hexo			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 8日, 2021				
+							</p>
+							<p class="relate-post-content">
+								本篇文章介绍了如何使用hexo博客以及配置相关的内容（包括统计插件，评论插件等）：
+安装并发布hexo安装hexo：npm install -g hexo-cli检查是否安装成功：hexo -v初始化网址：hexo init接着输入 ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/05/08/hello-world/" title="hello hexo">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="hello hexo"/>
 							</a>
 						</div>
 					</li>												
