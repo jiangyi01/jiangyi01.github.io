@@ -270,7 +270,7 @@
 
 	<a href="/2021/07/22/nginx-using-method/" itemprop="url">
 		<time datetime="2021-07-21T16:34:07.654Z" itemprop="dateUpdated">
-	  		2021-08-10
+	  		2021-08-15
 	  </time>
 	</a> 
 
@@ -334,6 +334,20 @@
 <h3 id="禁止外部某个端口比如80"><a href="#禁止外部某个端口比如80" class="headerlink" title="禁止外部某个端口比如80"></a>禁止外部某个端口比如80</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw delete allow 80</span><br></pre></td></tr></table></figure>
 
 <h3 id="查看端口ip"><a href="#查看端口ip" class="headerlink" title="查看端口ip"></a>查看端口ip</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ltn</span><br></pre></td></tr></table></figure>
+
+<h3 id="对于阿里轻量服务器的端口"><a href="#对于阿里轻量服务器的端口" class="headerlink" title="对于阿里轻量服务器的端口"></a>对于阿里轻量服务器的端口</h3><p>阿里轻量服务器的端口在机器上开放端口以后，还要在阿里的控制台进行再一次的端口设置，阿里有两层服务器安全设置，设置好以后差不多开启对应端口上的服务就可以使用了</p>
+<h3 id="另一个防火墙设置命令"><a href="#另一个防火墙设置命令" class="headerlink" title="另一个防火墙设置命令"></a>另一个防火墙设置命令</h3><h4 id="查看已经开放的端口"><a href="#查看已经开放的端口" class="headerlink" title="查看已经开放的端口"></a>查看已经开放的端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports</span><br></pre></td></tr></table></figure>
+
+<h4 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<h4 id="重启防火墙-1"><a href="#重启防火墙-1" class="headerlink" title="重启防火墙"></a>重启防火墙</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload firewalld</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看firewalld状态，发现当前是dead状态，即防火墙未开启"><a href="#查看firewalld状态，发现当前是dead状态，即防火墙未开启" class="headerlink" title="查看firewalld状态，发现当前是dead状态，即防火墙未开启"></a>查看firewalld状态，发现当前是dead状态，即防火墙未开启</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+
+<h4 id="开启防火墙，没有任何提示即开启成功。"><a href="#开启防火墙，没有任何提示即开启成功。" class="headerlink" title="开启防火墙，没有任何提示即开启成功。"></a>开启防火墙，没有任何提示即开启成功。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
+
+<h4 id="如果要关闭防火墙设置，可能通过systemctl-stop-firewalld这条指令来关闭该功能"><a href="#如果要关闭防火墙设置，可能通过systemctl-stop-firewalld这条指令来关闭该功能" class="headerlink" title="如果要关闭防火墙设置，可能通过systemctl stop firewalld这条指令来关闭该功能"></a>如果要关闭防火墙设置，可能通过systemctl stop firewalld这条指令来关闭该功能</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
 <h2 id="nginx具体配置"><a href="#nginx具体配置" class="headerlink" title="nginx具体配置"></a>nginx具体配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen    80;</span><br><span class="line">    server_name localhost;</span><br><span class="line">    location / &#123;</span><br><span class="line">      root  html;</span><br><span class="line">      index index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
 <p>  在这里如果不加其他的情况基本都是root就直接在相对位置上弄，root就直接弄安装nginx的根目录下的文件夹就可以了（就是直接一个nginx目录下的文件，直接嵌套就可以了），<br>  然后location后面的/是相对于路由吧，会直接加载到root目录后面访问文件。就相当于location后面的 /。。。加到访问端口上，然后服务器自动加上root在location之前来寻址</p>
 <h2 id="应该注意到问题"><a href="#应该注意到问题" class="headerlink" title="应该注意到问题"></a>应该注意到问题</h2><h3 id="文件访问限权问题"><a href="#文件访问限权问题" class="headerlink" title="文件访问限权问题"></a>文件访问限权问题</h3><p>我们在部署的时候会发生一些事情，比如按照正常部署的的节奏来，除非寻址出现问题，是不会有直接空白页的现象存在的，如果有的话，可能是访问的html这些在目录下的文件读取限权是没有的，这时候我们需要手动打开</p>
