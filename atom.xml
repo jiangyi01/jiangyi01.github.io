@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-08-15T02:53:07.647Z</updated>
+  <updated>2021-12-20T06:03:30.835Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>smartmontools</title>
+    <link href="http://example.com/2021/12/20/smartmontools/"/>
+    <id>http://example.com/2021/12/20/smartmontools/</id>
+    <published>2021-12-20T05:58:28.000Z</published>
+    <updated>2021-12-20T06:03:30.835Z</updated>
+    
+    <content type="html"><![CDATA[<p>##引言</p><p>一般在Windows电脑上，有丰富的硬盘S.M.A.R.T状态检测工具。但在封闭为主的macOS生态里，我们比较难找到一款免费且实用的S.M.A.R.T状态检测工具，但随着我更多的了解，我找到了一款命令行检测软件smartmontools。</p><p>#About Homebrew</p><p>如果你用过Linux发行版，你或许会知道他们或多或少都有Package Manager即包管理器的存在，Homebrew就属于这其中的一种，它同时支持macOS和Linux。在这篇文章中，我们主要介绍其在macOS平台的安装。</p><p>##安装Homebrew</p><p>安装Homebrew的方法比你想象的要简单些，你可以使用大佬提供的自动安装脚本进行安装：</p><p>###打开你的Mac终端，复制粘贴以下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure><p>软件会自动从最近的CN源进行下载安装。你只需要照着屏幕上的做即可。</p><p>安装完成之后，在终端输入brew update检查brew并更新。</p><p>如果安装完成后无法使用Brew命令，你可能要将其添加到系统变量之中：</p><p>###终端输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano~/.zshrc</span><br></pre></td></tr></table></figure><p>###接着会出现nano默认的文本编辑界面，添加以下内容：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure><p>接下来同时按Control + O保存，Control + X保存。</p><p>##安装smartmontools</p><p>###这步和Linux下通过命令行安装软件有点类似，你只要输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">brew install smartmontools &amp;&amp; sudo smartctl --all /dev/disk0</span><br></pre></td></tr></table></figure><p>即可。</p><p>###安装完成后，在终端输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo smartctl --all /dev/disk0 </span><br></pre></td></tr></table></figure><p>检查剩余寿命。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;##引言&lt;/p&gt;
+&lt;p&gt;一般在Windows电脑上，有丰富的硬盘S.M.A.R.T状态检测工具。但在封闭为主的macOS生态里，我们比较难找到一款免费且实用的S.M.A.R.T状态检测工具，但随着我更多的了解，我找到了一款命令行检测软件smartmontools。&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    <category term="技巧" scheme="http://example.com/categories/%E6%8A%80%E5%B7%A7/"/>
+    
+    
+    <category term="m1-macbook" scheme="http://example.com/tags/m1-macbook/"/>
+    
+  </entry>
   
   <entry>
     <title>nodejs-koa</title>

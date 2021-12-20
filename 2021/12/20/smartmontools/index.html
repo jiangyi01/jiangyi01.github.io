@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      springboot-use | the log of study from jy
+      smartmontools | the log of study from jy
     
   </title>
   <meta name="author" content="Jiang Yi">
@@ -101,7 +101,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「springboot-use」
+			「smartmontools」
 		
 	</p>
 
@@ -232,27 +232,14 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
-
-	
-		<div class="layout-toc">
-			<div id="layout-toc">
-				<div class="k-catelog-list" id="catelog-list" data-title="Catalog"></div>
-			</div>
-		</div>
-
-		
-<script src="/plugin/toc/katelog.min.js"></script>
-
-
-		
 	 
 
 <div class="layout-post">
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2021/07/18/springboot-use/" itemprop="url">
-		springboot-use
+	<a href="/2021/12/20/smartmontools/" itemprop="url">
+		smartmontools
 	</a>
 
 		</div>
@@ -268,9 +255,9 @@
 
 	Updated on
 
-	<a href="/2021/07/18/springboot-use/" itemprop="url">
-		<time datetime="2021-07-18T08:45:55.328Z" itemprop="dateUpdated">
-	  		2021-07-20
+	<a href="/2021/12/20/smartmontools/" itemprop="url">
+		<time datetime="2021-12-20T05:58:28.000Z" itemprop="dateUpdated">
+	  		2021-12-20
 	  </time>
 	</a> 
 
@@ -281,8 +268,8 @@
 				
 	<i class="icon-price-tags"></i>
 	
-		<a href="/tags/springboot/" class=" ">
-			springboot
+		<a href="/tags/m1-macbook/" class=" ">
+			m1-macbook
 		</a>
 	
 		
@@ -291,7 +278,7 @@
 			
 
 	
-    <span class="leancloud_visitors" id="/2021/07/18/springboot-use/_visitors" data-url="/2021/07/18/springboot-use/" data-title="springboot-use">
+    <span class="leancloud_visitors" id="/2021/12/20/smartmontools/_visitors" data-url="/2021/12/20/smartmontools/" data-title="smartmontools">
        	<i class="icon-eye"></i>
        	Hits
         
@@ -303,7 +290,7 @@
 
 
 	
-    <span class="leancloud_likes" id="/2021/07/18/springboot-use/_likes" data-url="/2021/07/18/springboot-use/" data-title="springboot-use" rel="unlike">
+    <span class="leancloud_likes" id="/2021/12/20/smartmontools/_likes" data-url="/2021/12/20/smartmontools/" data-title="smartmontools" rel="unlike">
         <i class="icon-heart"></i>
         Likes
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -313,36 +300,32 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h1 id="后端学习日志："><a href="#后端学习日志：" class="headerlink" title="后端学习日志："></a>后端学习日志：</h1><h2 id="SpringBootMVC的结构解读："><a href="#SpringBootMVC的结构解读：" class="headerlink" title="SpringBootMVC的结构解读："></a>SpringBootMVC的结构解读：</h2><p>对于SpringBoot来说一个高内聚低耦合的框架必须要遵守一个能够承受得住较大量开发的逻辑难度，有些开发者是单人开发，所面临的主要开发问题是如何记住自己写过的每一个功能，并且某些功能与功能之间也可能出现一些功能上的重合，可能需要调用很多相同的函数或者是根本就是相似的写法或者功能，如何去组织这些功能之间的耦合性与内聚性达到一种比较和谐的平衡关系，这就需要有一套管理代码调用的机制MVC，在一般的开发者面前这个机制也许是用来管理代码的，更有深层次的解读。</p>
-<p>View层：用于接受用户提交请求的代码，也就是在我们所开发的项目中的所用到的Controller层，这一层负责将前端开发者用到的服务整合并将接口暴露出来用于接受前端开发者的请求与传入的参数并对其进行一定的提取和整合，接着将前端请求逻辑上进行对服务层的接口进行调用。</p>
-<p>Service层：系统的业务逻辑主要在这里完成。用户的请求在View层得到处理后调用Service层的函数来实现具体的操作并将后端数据库的操作进行调用，从而实现整个逻辑层。</p>
-<p>Dao层：Service层的逻辑实现过程中会对数据库进行操作，Dao层就是实现了一系列对数据库操作的函数和类。</p>
-<p>这三层都会以接口或者抽象方式将自己的所提供的函数暴露出来，上层对下层的调用通过接口来实现，底层才是上层逻辑或者要求的服务的真正提供者。</p>
-<p>在这三层之外，对于数据库的操作，也就是Dao这一层，我们将数据库返回出来的关系也可以抽象成一个实体类，于是Dao层中对数据库进行操作过程中传出的参数，会直接由SpringBoot中对注解以及封装的接口将其自动封装为自己之前定义好的实体类，也就是entity，如果我们使用传统的mybatis生成结构的话，会出现比较传统的xml注入的情况，于是也就有了对应的Dao层对于xml的映射关系，对于这层关系来说，每一个Dao操作的类，都会对应在Mapper.xml中找到对应自己接口名的id，在规定好传入参数和穿出参数后，就可以进行合理的映射，每当有服务层的服务去调用Dao层对数据库调用的接口时，Dao的接口在注解的封装下就会自动去映射其对应的Mapper.xml中所调用接口的xml标签，对应找到标签以后会在标签内所写的结构化的sql语言的注入到数据库中，从而实现对应的数据库的操作。</p>
-<h2 id="SpringBoot注解解读："><a href="#SpringBoot注解解读：" class="headerlink" title="SpringBoot注解解读："></a>SpringBoot注解解读：</h2><p>对于一般的使用上面来说，如果不用mybatis的话我是这么使用的：</p>
-<p>首先我们从entity层开始写起，这一层在一般情况下不需要注解，因为只是一个实体类。</p>
-<p>写好对应的entity实体类时候我们开始对Dao数据库层进行操作，Dao中首先需要Mapper将这个接口与对应的XML对应上，然后按照我的习惯，会直接对对应的接口进行数据库操作的注入，直接在接口上方用@Insert或者@Delete等来注入比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PaperMaitainDao</span></span>&#123;</span><br><span class="line">  <span class="meta">@Insert(&quot;INSERT INTO paper_maitain (tea_id,paper_id,qulid_id) VALUES (#&#123;teaId&#125;, #&#123;paperId&#125;,#&#123;qualifId&#125;)&quot;)</span></span><br><span class="line">	<span class="function">boolen <span class="title">insertPaperMaitain</span><span class="params">(PaperMaitain paperMaitian)</span></span>;</span><br><span class="line">  <span class="comment">//PaperMaitain是在entity中的实体类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>做好这一层的逻辑构成了，我们开始更上一层的服务层在这里我们需要注册一个服务接口@Service</p>
-<p>然后注入对应要使用的Dao的接口服务，一般使用到@Resource或者@Autowired</p>
-<p>然后我们就可以写对应的服务接口了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TeacherService</span></span>&#123;</span><br><span class="line">  <span class="meta">@Resource</span></span><br><span class="line">  <span class="keyword">private</span> PaperMaintainDao paperMaintainDao;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> Boolean <span class="title">createPaperMaintain</span><span class="params">(PaperMaintain paperMaintain)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> paperMaintainDao.insertPaperMaintain(paperMaintain);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们的服务就此写好后，接下来就是将一系列的服务操作与前端对接风部分了Controller层</p>
-<p>首先先声明这个对应的Controller使用@RestController</p>
-<p>然后对应我们要在路由上面进行对应起来，@RequestMapping(value = “/teacher”)这一个总的接口会在root/teacher上面开启</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/teacher&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TeacherController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> TeacherService teacherService;</span><br><span class="line">  <span class="comment">//这里是直接调用服务层，引入资源</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//做一个在/teacher下的路由映射，访问这个接口需要root/teacher/createPaperMaintain</span></span><br><span class="line">  	<span class="meta">@RequestMapping(value = &quot;/createPaperMaintain&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">createPaperMaintains</span><span class="params">(<span class="meta">@RequestBody</span> Map&lt;String, Object&gt; request)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> teaId = (<span class="keyword">int</span>) request.get(<span class="string">&quot;tea_id&quot;</span>);</span><br><span class="line">        String paperId = (String) request.get(<span class="string">&quot;paper_id&quot;</span>);</span><br><span class="line">        Integer qualifId = (Integer) request.get(<span class="string">&quot;qualif_id&quot;</span>);</span><br><span class="line">        PaperMaintain paperMaintain  = <span class="keyword">new</span> PaperMaintain();</span><br><span class="line">        paperMaintain.setPaperId(paperId);</span><br><span class="line">        paperMaintain.setQualifId(qualifId);</span><br><span class="line">        paperMaintain.setTeaId(teaId);</span><br><span class="line">        <span class="keyword">return</span> Result.succ(teacherService.createPaperMaintain(paperMaintain));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="关于应对前端传入的数组问题"><a href="#关于应对前端传入的数组问题" class="headerlink" title="关于应对前端传入的数组问题"></a>关于应对前端传入的数组问题</h3><h4 id="前端传入的数组对于java来说其实是一个单独的ArrayList，所以可以单独用这个来接受，因此，就会有下面的操作"><a href="#前端传入的数组对于java来说其实是一个单独的ArrayList，所以可以单独用这个来接受，因此，就会有下面的操作" class="headerlink" title="前端传入的数组对于java来说其实是一个单独的ArrayList，所以可以单独用这个来接受，因此，就会有下面的操作"></a>前端传入的数组对于java来说其实是一个单独的ArrayList，所以可以单独用这个来接受，因此，就会有下面的操作</h4><p>1.如果前端直接传输的是一个数组，则在Controller的接口层面就直接（@RequestBody ArrayList&lt;数组中json在实体类对应的类型&gt; request）<br>2.直接在实体类中定义对应的接收的实体类，然后定义前端要专递数据的类型</p>
-<h5 id="比如下面这个实体类："><a href="#比如下面这个实体类：" class="headerlink" title="比如下面这个实体类："></a>比如下面这个实体类：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentCourseUpdaterCollection</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer courseId;</span><br><span class="line">    <span class="keyword">private</span> List&lt;StudentCourseUpdater&gt; studentCourseUpdaters;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCourseId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> courseId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCourseId</span><span class="params">(Integer courseId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.courseId = courseId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;StudentCourseUpdater&gt; <span class="title">getStudentCourseUpdaters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> studentCourseUpdaters;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStudentCourseUpdaters</span><span class="params">(List&lt;StudentCourseUpdater&gt; studentCourseUpdaters)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.studentCourseUpdaters = studentCourseUpdaters;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="然后后端的接收的接口是这样的："><a href="#然后后端的接收的接口是这样的：" class="headerlink" title="然后后端的接收的接口是这样的："></a>然后后端的接收的接口是这样的：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/updateStuCourseByKey&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Result <span class="title">updateStuCourseByKey</span><span class="params">(<span class="meta">@RequestBody</span> StudentCourseUpdaterCollection studentCourseUpdaterCollection)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        ArrayList&lt;Integer&gt; ids= <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//System.out.println(studentCourseUpdaterCollection.getCourseId());</span></span><br><span class="line">        <span class="keyword">for</span>( StudentCourseUpdater studentCourseUpdater: studentCourseUpdaterCollection.getStudentCourseUpdaters() )&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(teacherService.updateStuCourseByKey(studentCourseUpdater)==<span class="number">0</span>)&#123;</span><br><span class="line">                    ids.add(studentCourseUpdater.getStuId());</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">catch</span> (Exception  e) &#123;</span><br><span class="line">                    ids.add(studentCourseUpdater.getStuId());</span><br><span class="line">                    <span class="comment">//System.out.println(studentCourseUpdater.getStuId());</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//System.out.println(studentCourseUpdater.getScore());</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ids.size()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> Result.succ(<span class="string">&quot;操作成功&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            String msg=<span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> id:ids)&#123;</span><br><span class="line">                msg+=id+<span class="string">&quot;,&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Result.fail(<span class="string">&quot;操作失败！&quot;</span>+<span class="string">&quot;失败id：&quot;</span>+msg);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+			<p>##引言</p>
+<p>一般在Windows电脑上，有丰富的硬盘S.M.A.R.T状态检测工具。但在封闭为主的macOS生态里，我们比较难找到一款免费且实用的S.M.A.R.T状态检测工具，但随着我更多的了解，我找到了一款命令行检测软件smartmontools。</p>
+<p>#About Homebrew</p>
+<p>如果你用过Linux发行版，你或许会知道他们或多或少都有Package Manager即包管理器的存在，Homebrew就属于这其中的一种，它同时支持macOS和Linux。在这篇文章中，我们主要介绍其在macOS平台的安装。</p>
+<p>##安装Homebrew</p>
+<p>安装Homebrew的方法比你想象的要简单些，你可以使用大佬提供的自动安装脚本进行安装：</p>
+<p>###打开你的Mac终端，复制粘贴以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/zsh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 
-<h5 id="前端在传递参数的时候也要按照对应的格式来"><a href="#前端在传递参数的时候也要按照对应的格式来" class="headerlink" title="前端在传递参数的时候也要按照对应的格式来"></a>前端在传递参数的时候也要按照对应的格式来</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;courseId&quot;</span>:<span class="number">480120</span>,</span><br><span class="line">    <span class="attr">&quot;studentCourseUpdaters&quot;</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;stuId&quot;</span>:<span class="number">201656788</span>,</span><br><span class="line">            <span class="attr">&quot;courseId&quot;</span>:<span class="number">80120</span>,</span><br><span class="line">            <span class="attr">&quot;score&quot;</span>:<span class="number">79</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-<p>以上是一个比较粗略的一个springboot从整体到局部的一个解析，也是这一周将之前学到的知识参与实践的操作。</p>
+<p>软件会自动从最近的CN源进行下载安装。你只需要照着屏幕上的做即可。</p>
+<p>安装完成之后，在终端输入brew update检查brew并更新。</p>
+<p>如果安装完成后无法使用Brew命令，你可能要将其添加到系统变量之中：</p>
+<p>###终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>###接着会出现nano默认的文本编辑界面，添加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>接下来同时按Control + O保存，Control + X保存。</p>
+<p>##安装smartmontools</p>
+<p>###这步和Linux下通过命令行安装软件有点类似，你只要输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">brew install smartmontools &amp;&amp; sudo smartctl --all /dev/disk0</span><br></pre></td></tr></table></figure>
+<p>即可。</p>
+<p>###安装完成后，在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo smartctl --all /dev/disk0 </span><br></pre></td></tr></table></figure>
+<p>检查剩余寿命。</p>
 	
 		</div>
 		
@@ -361,12 +344,8 @@
 	<span>
 		<a id="totop-post-page">To Top</a>
 		
-			<a href="/2021/07/22/nginx-using-method/" title="nginx-use" rel="prev">
-				&laquo;Pre post
-			</a>
 		
-		
-			<a href="/2021/07/16/git-use/" title="git-use" rel="next">
+			<a href="/2021/08/15/nodejs-koa/" title="nodejs-koa" rel="next">
 				Next post&raquo;
 			</a>
 			
@@ -387,23 +366,23 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/12/20/smartmontools/" title="smartmontools">
-								smartmontools			
+							<a class="relate-post-title" href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">
+								m1-macbook-use			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								十二月 20日, 2021				
+								八月 5日, 2021				
 							</p>
 							<p class="relate-post-content">
-								##引言
-一般在Windows电脑上，有丰富的硬盘S.M.A.R.T状态检测工具。但在封闭为主的macOS生态里，我们比较难找到一款免费且实用的S.M.A.R.T状态检测工具，但随着我更多的了解，我找到了一款命令行检测软件smartm...
+								JDK 配置目前 Zulu JDK 支持 M1芯片，下载：下载地址下载后点击安装，在控制台输入java -version
+1234java -versionopenjdk version &quot;16.0.2&quot; 2021...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2021/12/20/smartmontools/" title="smartmontools">				
+							<a href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">				
 								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/8.jpg" alt="smartmontools"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="m1-macbook-use"/>
 							</a>
 						</div>
 					</li>												
@@ -432,29 +411,6 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">
-								m1-macbook-use			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								八月 5日, 2021				
-							</p>
-							<p class="relate-post-content">
-								JDK 配置目前 Zulu JDK 支持 M1芯片，下载：下载地址下载后点击安装，在控制台输入java -version
-1234java -versionopenjdk version &quot;16.0.2&quot; 2021...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2021/08/05/m1-macbook-use/" title="m1-macbook-use">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/images/1.jpg" alt="m1-macbook-use"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2021/07/22/nginx-using-method/" title="nginx-use">
 								nginx-use			
 							</a>
@@ -473,6 +429,28 @@
 							<a href="/2021/07/22/nginx-using-method/" title="nginx-use">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/images/2.jpg" alt="nginx-use"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2021/07/18/springboot-use/" title="springboot-use">
+								springboot-use			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								七月 18日, 2021				
+							</p>
+							<p class="relate-post-content">
+								后端学习日志：SpringBootMVC的结构解读：对于SpringBoot来说一个高内聚低耦合的框架必须要遵守一个能够承受得住较大量开发的逻辑难度，有些开发者是单人开发，所面临的主要开发问题是如何记住自己写过的每一个功能，并且某些功...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2021/07/18/springboot-use/" title="springboot-use">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/images/8.jpg" alt="springboot-use"/>
 							</a>
 						</div>
 					</li>												
